@@ -1,4 +1,4 @@
-# Библиотека макросов
+# Перечень возможностей библиотеки
 
 ## `read_int`
 
@@ -17,7 +17,7 @@ section .data
 
 section .text
    read_int user_input
-
+```
 
 ## `str_to_int`
 
@@ -38,7 +38,7 @@ section .data
 
 section .text
    str_to_int num_str, result
-
+```
 
 ## `int_to_str`
 
@@ -59,7 +59,7 @@ section .data
 
 section .text
    int_to_str buffer, number
-
+```
 
 ## `print`
 
@@ -78,7 +78,7 @@ section .data
 
 section .text
    print message
-
+```
 
 ## `println`
 
@@ -97,7 +97,7 @@ section .data
 
 section .text
    println message
-
+```
 
 ## `print_multi`
 
@@ -118,7 +118,7 @@ section .data
 
 section .text
    print_multi msg1, msg2, msg3
-
+```
 
 ## `print_inline`
 
@@ -139,7 +139,7 @@ section .data
 
 section .text
    print_inline msg1, msg2, msg3
-
+```
 
 ## `print_char`
 
@@ -158,7 +158,7 @@ section .data
 
 section .text
    print_char char
-
+```
 
 ## `concat`
 
@@ -180,7 +180,7 @@ section .data
 
 section .text
    concat result, str1, str2
-
+```
 
 ## `strlen`
 
@@ -201,7 +201,7 @@ section .data
 
 section .text
    strlen length, my_str
-
+```
 
 ## `strcopy`
 
@@ -222,7 +222,7 @@ section .data
 
 section .text
    strcopy str1, str2
-
+```
 
 ## `strcmp`
 
@@ -245,7 +245,7 @@ section .data
 
 section .text
    strcmp result, str1, str2
-
+```
 
 ## `substr`
 
@@ -269,7 +269,7 @@ section .data
 
 section .text
    substr result, str, 7, 12
-
+```
 
 ## `int_to_bin`
 
@@ -290,7 +290,7 @@ section .data
 
 section .text
    int_to_bin number, bin_result
-
+```
 
 
 
