@@ -15,6 +15,12 @@
 
 %endif
 ;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
+;
+;   The Macro block used for numbers and operations with them
+;
+;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
 %macro read_int 1             ; Macros for input integer value
    
    ; Save registers to preserve their original values
@@ -152,6 +158,42 @@
    pop ax
 %endmacro
 ;------------------------------------------------------------------------------
+%macro int_to_bin 2           ; Macros for convert 2-byte integer to binary number
+   
+   ; Save registers to preserve their original values
+   push ax
+   push cx
+   push dx
+   push di
+
+   mov dx, %1                 ; Load the 16-bit integer into DX
+   lea di, %2                 ; Load the address of the output buffer into DI
+   mov ah, '0'/2              ; Set AH to half of ASCII '0' (0x30 / 2 = 0x18)
+   mov cx, 16                 ; Set loop counter for 16 bits
+
+   %%conversion:
+      mov al, ah              ; Load base value ('0'/2) into AL
+      shl dx, 1               ; Shift DX left, moving the highest bit into CF
+      adc al, al              ; Add AL + AL + CF (turns '0' into '1' if CF=1)
+      stosb                   ; Store AL in [DI] and increment DI
+      dec cx                  ; Decrement loop counter
+      jnz %%conversion        ; Repeat until CX reaches 0
+  
+   mov byte [di], '$'         ; Null-terminate the string
+
+   ; Restore original registers values
+   pop di
+   pop dx
+   pop cx
+   pop ax
+%endmacro
+;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
+;
+;   The Macro block used for strings and operations with them
+;
+;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
 %macro newline 0              ; Macros for moving the cursor to a new line
    
    ; Save registers to preserve their original values
@@ -165,8 +207,8 @@
    int 21h                    ; DOS interrupt
 
    ; Restore original registers values
-   pop ax
    pop dx
+   pop ax
 %endmacro
 ;------------------------------------------------------------------------------
 %macro print 1                ; Macros for print output string on screen
