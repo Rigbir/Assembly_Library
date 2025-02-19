@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Functions for Numbers - Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Functions for Numbers";
+        var mkdocs_page_input_path = "numbers.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Functions for Numbers</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../strings/">Functions for Strings</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Documentation</li>
+      <li class="breadcrumb-item active">Functions for Numbers</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="functions-for-numbers">Functions for Numbers</h2>
+<details>
+<summary style="font-size: 18px; font-weight: bold; color: #0077cc; padding: 10px; margin-bottom: 15px; cursor: pointer;">Expand the list</summary>
+
+  <ul style="margin-top: 10px;">
+    <li style="margin-bottom: 8px;"><a href="#read_int" style="text-decoration: none; color: #0077cc;">read_int</a></li>
+    <li style="margin-bottom: 8px;"><a href="#str_to_int" style="text-decoration: none; color: #0077cc;">str_to_int</a></li>
+    <li style="margin-bottom: 8px;"><a href="#int_to_str" style="text-decoration: none; color: #0077cc;">int_to_str</a></li>
+    <li style="margin-bottom: 8px;"><a href="#int_to_bin" style="text-decoration: none; color: #0077cc;">int_to_bin</a></li>
+  </ul>
+
+</details>
+
+<h2 id="read_int"><code>read_int</code></h2>
+<h3 id="description">Description</h3>
+<p>Reads an integer from the keyboard. Input ends when the Enter key (Carriage Return) is pressed. The entered characters must be digits from '0' to '9'. The final number is stored in the specified variable.</p>
+<h3 id="arguments">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parametrs</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the variable where the entered integer will be stored.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   user_input dw 0
+
+section .text
+   read_int user_input
+</code></pre>
+<h2 id="str_to_int"><code>str_to_int</code></h2>
+<h3 id="description_1">Description</h3>
+<p>Converts a string representing an integer into an int value. The string must end with $ and contain only digits from '0' to '9'.</p>
+<h3 id="arguments_1">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parametrs</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the string to be converted.</td>
+</tr>
+<tr>
+<td><strong>%2</strong></td>
+<td>Address of the variable where the integer will be stored.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_1">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   num_str db &quot;123$&quot;, 0
+   result dw 0
+
+section .text
+   str_to_int num_str, result
+</code></pre>
+<h2 id="int_to_str"><code>int_to_str</code></h2>
+<h3 id="description_2">Description</h3>
+<p>Converts an integer into an ASCII string. The number can be passed in one of the registers (<code>AX</code>, <code>BX</code>, <code>DX</code>) or as a memory address. The result is stored in string format in the specified buffer, with the string ending in <code>$</code>.</p>
+<h3 id="arguments_2">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the buffer where the string representing the number will be stored.</td>
+</tr>
+<tr>
+<td><strong>%2</strong></td>
+<td>Register or memory address containing the integer to be converted. Allowed values: <code>AX</code>, <code>BX</code>, <code>DX</code>, or a memory address.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_2">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   buffer db 10, 0 ; String buffer, must be large enough
+   number dw 1234   ; Number to be converted
+
+section .text
+   int_to_str buffer, number
+</code></pre>
+<h2 id="int_to_bin"><code>int_to_bin</code></h2>
+<h3 id="description_3">Description</h3>
+<p>Converts an integer (up to 5 digits) into a binary string. The result is stored in string format in the specified buffer. Each bit of the number is represented by the character '0' or '1'. The string is terminated by the null character <code>$</code>.</p>
+<h3 id="arguments_3">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the integer to be converted to binary format.</td>
+</tr>
+<tr>
+<td><strong>%2</strong></td>
+<td>Address of the buffer where the result (binary string) will be written.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-usage">Example usage</h3>
+<pre><code class="language-assembly">section .data
+   number dw 12345        ; Example number for conversion
+   bin_result db 17, 0    ; Buffer to store the binary string (16 bits + 1 for null character $)
+
+section .text
+   int_to_bin number, bin_result
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../strings/" class="btn btn-neutral float-right" title="Functions for Strings">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../strings/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

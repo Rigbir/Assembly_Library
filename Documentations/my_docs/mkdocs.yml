@@ -1,0 +1,11 @@
+site_name: Documentation 
+nav:
+  - Home: index.md
+  - Documentation:
+      - Functions for Numbers: numbers.md
+      - Functions for Strings: strings.md
+markdown_extensions:
+  - attr_list
+  - md_in_html 
+theme:
+  name: readthedocs 

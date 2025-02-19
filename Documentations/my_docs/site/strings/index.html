@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Functions for Strings - Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Functions for Strings";
+        var mkdocs_page_input_path = "strings.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../numbers/">Functions for Numbers</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Functions for Strings</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Documentation</li>
+      <li class="breadcrumb-item active">Functions for Strings</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="functions-for-strings">Functions for Strings</h2>
+<details>
+<summary style="font-size: 18px; font-weight: bold; color: #0077cc; padding: 10px; margin-bottom: 15px; cursor: pointer;">Expand the list</summary>
+
+  <ul style="margin-top: 10px;">
+    <li style="margin-bottom: 8px;"><a href="#print" style="text-decoration: none; color: #0077cc;">print</a></li>
+    <li style="margin-bottom: 8px;"><a href="#println" style="text-decoration: none; color: #0077cc;">println</a></li>
+    <li style="margin-bottom: 8px;"><a href="#print_multi" style="text-decoration: none; color: #0077cc;">print_multi</a></li>
+    <li style="margin-bottom: 8px;"><a href="#print_inline" style="text-decoration: none; color: #0077cc;">print_inline</a></li>
+    <li style="margin-bottom: 8px;"><a href="#print_char" style="text-decoration: none; color: #0077cc;">print_char</a></li>
+    <li style="margin-bottom: 8px;"><a href="#concat" style="text-decoration: none; color: #0077cc;">concat</a></li>
+    <li style="margin-bottom: 8px;"><a href="#strlen" style="text-decoration: none; color: #0077cc;">strlen</a></li>
+    <li style="margin-bottom: 8px;"><a href="#strcopy" style="text-decoration: none; color: #0077cc;">strcopy</a></li>
+    <li style="margin-bottom: 8px;"><a href="#strcmp" style="text-decoration: none; color: #0077cc;">strcmp</a></li>
+    <li style="margin-bottom: 8px;"><a href="#substr" style="text-decoration: none; color: #0077cc;">substr</a></li>
+  </ul>
+
+</details>
+
+<h2 id="print"><code>print</code></h2>
+<h3 id="description">Description</h3>
+<p>Prints a string to the screen using the DOS function for string output. The string must end with the <code>$</code> character.</p>
+<h3 id="arguments">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the string to be printed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   message db &quot;Hello, world!$&quot;, 0
+
+section .text
+   print message
+</code></pre>
+<h3 id="description_1">Description</h3>
+<p>Prints a string to the screen and adds a newline after the output. Uses the <code>print</code> macro for output and the <code>newline</code> macro for a new line.</p>
+<h3 id="arguments_1">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the string to be printed with a newline.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_1">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   message db &quot;Hey!$&quot;, 0
+
+section .text
+   println message
+</code></pre>
+<h2 id="print_multi"><code>print_multi</code></h2>
+<h3 id="description_2">Description</h3>
+<p>Prints multiple strings to the screen. Uses the <code>println</code> macro to print each string with a newline. Supports a variable number of arguments and requires at least two arguments.</p>
+<h3 id="arguments_2">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1, %2, ...</strong></td>
+<td>Variable number of strings to be printed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_2">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   msg1 db &quot;Hello,&quot;, 0
+   msg2 db &quot;world!&quot;, 0
+   msg3 db &quot;How are you?&quot;, 0
+
+section .text
+   print_multi msg1, msg2, msg3
+</code></pre>
+<h2 id="print_inline"><code>print_inline</code></h2>
+<h3 id="description_3">Description</h3>
+<p>Prints multiple strings in a single line, separating them with spaces. Each argument is printed with a space between them, except for the last one. Supports a variable number of arguments and requires at least two arguments.</p>
+<h3 id="arguments_3">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1, %2, ...</strong></td>
+<td>Variable number of strings to be printed in one line, separated by spaces.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_3">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   msg1 db &quot;Hello,&quot;, 0
+   msg2 db &quot;world!&quot;, 0
+   msg3 db &quot;How are you?&quot;, 0
+
+section .text
+   print_inline msg1, msg2, msg3
+</code></pre>
+<h2 id="print_char"><code>print_char</code></h2>
+<h3 id="description_4">Description</h3>
+<p>Prints a character to the screen followed by a newline. First prints a newline (Carriage Return and Line Feed), then prints the specified character.</p>
+<h3 id="arguments_4">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Character to be printed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_4">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   char db 'A'  ; Character to print
+
+section .text
+   print_char char
+</code></pre>
+<h2 id="concat"><code>concat</code></h2>
+<h3 id="description_5">Description</h3>
+<p>Concatenates two or more string arguments into a single string. The result is stored in the first provided parameter, which must be a buffer for storing the result. Each string must end with the <code>$</code> character.</p>
+<h3 id="arguments_5">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the buffer where the concatenated string will be stored.</td>
+</tr>
+<tr>
+<td><strong>%2, %3, ...</strong></td>
+<td>Strings to concatenate. Each string must end with <code>$</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_5">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   str1 db &quot;Hello$&quot;, 0
+   str2 db &quot;World$&quot;, 0
+   result db 100 dup(0) ; Buffer for result
+
+section .text
+   concat result, str1, str2
+</code></pre>
+<h2 id="strlen"><code>strlen</code></h2>
+<h3 id="description_6">Description</h3>
+<p>Calculates the length of a string, including only characters up to the first <code>$</code> character. The result is stored in the variable passed as the first argument. The string must end with <code>$</code>.</p>
+<h3 id="arguments_6">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the variable where the string length (integer) will be stored.</td>
+</tr>
+<tr>
+<td><strong>%2</strong></td>
+<td>Address of the string whose length is to be calculated. The string must end with <code>$</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_6">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   my_str db &quot;Hello$&quot;, 0
+   length dw 0
+
+section .text
+   strlen length, my_str
+</code></pre>
+<h2 id="strcmp"><code>strcopy</code></h2>
+<h3 id="description_7">Description</h3>
+<p>Copies the content of the second string into the first string. Both strings must end with the <code>$</code> character. The second string is copied into the first, including the end-of-string <code>$</code> character.</p>
+<h3 id="arguments_7">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the first buffer where the string will be copied.</td>
+</tr>
+<tr>
+<td><strong>%2</strong></td>
+<td>Address of the second buffer (string) whose content will be copied.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_7">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   str1 db &quot;Old string$&quot;, 0
+   str2 db &quot;New string$&quot;, 0
+
+section .text
+   strcopy str1, str2
+</code></pre>
+<h2 id="strcmp"><code>strcmp</code></h2>
+<h3 id="description_8">Description</h3>
+<p>Compares two strings and stores the comparison result (whether they are equal or not) in a buffer (must be at least 5 bytes). Both strings must end with the <code>$</code> character. If the strings are equal, <code>"True"</code> is copied into the buffer; otherwise, <code>"False"</code> is copied.</p>
+<h3 id="arguments_8">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the buffer where the comparison result will be stored.</td>
+</tr>
+<tr>
+<td><strong>%2</strong></td>
+<td>Address of the first string to compare.</td>
+</tr>
+<tr>
+<td><strong>%3</strong></td>
+<td>Address of the second string to compare with the first.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-example_8">Usage Example</h3>
+<pre><code class="language-assembly">section .data
+   result db 5
+   str1 db &quot;Hello$&quot;, 0
+   str2 db &quot;Hello$&quot;, 0
+
+section .text
+   strcmp result, str1, str2
+</code></pre>
+<h2 id="substr"><code>substr</code></h2>
+<h3 id="description_9">Description</h3>
+<p>Extracts a substring from a string using two numbers that indicate the start and end positions. If the indices are incorrect (e.g., the end index is greater than the length of the string or the start index is greater than the end), an empty string is written to the buffer, and an error message is displayed.</p>
+<h3 id="arguments_9">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%1</strong></td>
+<td>Address of the buffer where the substring will be written.</td>
+</tr>
+<tr>
+<td><strong>%2</strong></td>
+<td>Address of the source string from which the substring will be extracted.</td>
+</tr>
+<tr>
+<td><strong>%3</strong></td>
+<td>Start position of the substring (index of the first character to extract).</td>
+</tr>
+<tr>
+<td><strong>%4</strong></td>
+<td>End position of the substring (index of the last character to include in the substring).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-usage">Example usage</h3>
+<pre><code class="language-assembly">section .data
+   str db &quot;Hello, World$&quot;, 0
+   result db 10, 0
+   error_msg db &quot;Invalid indices!&quot;, 0
+
+section .text
+   substr result, str, 7, 12
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../numbers/" class="btn btn-neutral float-left" title="Functions for Numbers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../numbers/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
