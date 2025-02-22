@@ -13,9 +13,9 @@
 📌 Check out the 👉 [**Test Program**](https://github.com/Rigbir/Assembly_Library/blob/main/TestLib.asm), which demonstrates most of the library's functions. 
 
 
-## 📄 Documentation  
+## 📚 Documentation  
 
-📚 **Explore the full documentation for detailed descriptions of all available macros.**  
+**Explore the full documentation for detailed descriptions of all available macros.**  
 
 🌐 [**Online Documentation**](https://rigbir.github.io/Assembly_Library/) <br>
 <br> 🔹 [**English Version**](https://github.com/Rigbir/Assembly_Library/blob/main/Documentations/Documentation_EN.md) <br>  
