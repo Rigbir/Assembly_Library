@@ -18,8 +18,8 @@
 📚 **Explore the full documentation for detailed descriptions of all available macros.**  
 
 🌐 [**Online Documentation**](https://rigbir.github.io/Assembly_Library/) (powered by MkDocs) <br>
-🔹 [**English Version**](https://github.com/Rigbir/Assembly_Library/blob/main/docs/README_EN.md)  
-🔹 [**Russian Version**](https://github.com/Rigbir/Assembly_Library/blob/main/docs/README_RU.md)  
+<br> 🔹 [**English Version**](https://github.com/Rigbir/Assembly_Library/blob/main/Documentations/Documentation_EN.md) <br>  
+🔹 [**Russian Version**](https://github.com/Rigbir/Assembly_Library/blob/main/Documentations/Documentation_RU.md) <br>  
 
 
 ## 🔧 A minimal overview of the features
