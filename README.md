@@ -15,24 +15,24 @@
    ```sh
    git clone https://github.com/Rigbir/Assembly_Library.git
    ```
-   **Move the library file to your project folder**:
+2. **Move the library file to your project folder**:
    ```sh
    mv MarLib.asm /path_to_your_work-folder
    ```
-   **Use library in your code**:
+3. **Use library in your code**:
    ```asm
    %include "MarLib.asm"
    ```
-   **Use the macros you need**:
+4. **Use the macros you need**:
    ```asm
    section .data
       msg db "Hey, this is MarLib function$!"
    section .text
       print msg
    ```
-  **After, compile your file and run**:
-  ```sh
-  nasm -f bin examples.asm -o examples.com 
+5. **After, compile your file and run**:
+   ```sh
+   nasm -f bin examples.asm -o examples.com 
   
-  dosbox examples.com
-  ```
+   dosbox examples.com
+   ```
