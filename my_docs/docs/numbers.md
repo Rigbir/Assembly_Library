@@ -29,7 +29,7 @@ section .text
 
 Converts a string representing an integer into an int value. The string must end with $ and contain only digits from '0' to '9'.
 
-**Arguments **
+**Arguments**
 
 | Parametrs | Description  |
 |-----------|--------------|
