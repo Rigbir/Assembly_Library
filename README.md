@@ -4,7 +4,7 @@
 
 ## 🚀 Features  
 🔹 **Easy to use** — minimizes routine in assembly programming. <br> 
-🔹 **Runs on NASM** — compatible with **Mac OS**, **Linux**, **Windows**. <br>  
+🔹 **Runs on NASM** — compatible with **Mac OS**, **Linux**, **Windows**.  
 🔹 **C-like syntax** — makes assembly code more readable. 
 
 
