@@ -3,9 +3,9 @@
 **Assembly Library for x86** — It is a macro library for the i8086 assembler, designed for user-friendly operation. It simplifies the development of assembly language programs by providing ready-made solutions for basic operations. 
 
 ## 🚀 Features  
-- 🔹 **Easy to use** — minimizes routine in assembly programming.  
-- 🔹 **Runs on NASM** — compatible with **Mac OS**, **Linux**, **Windows**.  
-- 🔹 **C-like syntax** — makes assembly code more readable.  
+🔹 **Easy to use** — minimizes routine in assembly programming. <br> 
+🔹 **Runs on NASM** — compatible with **Mac OS**, **Linux**, **Windows**. <br>  
+🔹 **C-like syntax** — makes assembly code more readable. 
 
 
 ## 🔧 Demonstration  
