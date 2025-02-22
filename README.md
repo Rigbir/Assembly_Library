@@ -24,9 +24,9 @@
 
 ## 🔧 A minimal overview of the features
 
-📌 Input and Output of strings (`print`, `println`, `print_multi`, `print_inline`)
-📌 Operations with strings (`strlen`, `strcopy`, `strcmp`, `substr`, `concat`)
-📌 Various conversions (`int_to_str`, `str_to_int`, `int_to_bin`)
+📌 Input and Output of strings (`print`, `println`, `print_multi`, `print_inline`) <br>
+📌 Operations with strings (`strlen`, `strcopy`, `strcmp`, `substr`, `concat`) <br>
+📌 Various conversions (`int_to_str`, `str_to_int`, `int_to_bin`) <br>
 📌 And other features
 
  
