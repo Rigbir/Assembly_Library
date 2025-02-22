@@ -1,9 +1,22 @@
-# Assembly Library for x86 (i8086)
+# 🏗️ Assembly Library for x86 (i8086)
 
 **Assembly Library for x86** — It is a macro library for the i8086 assembler, designed for user-friendly operation. It simplifies the development of assembly language programs by providing ready-made solutions for basic operations. 
 
-The library runs on **NASM** assembler, which is cross-platform (supports Mac OS, Linux, Windows). Writing programs using it becomes similar to C programs. You can verify this by looking at the test program, which demonstrates most of the functions of this library. <br>
-Just send the link: [Test_Programm](https://github.com/Rigbir/Assembly_Library/blob/main/TestLib.asm)
+## ✨ Features  
+- 🔹 **Easy to use** — minimizes routine in assembly programming.  
+- 🔹 **Runs on NASM** — compatible with **DOSBox**, **Mac OS**, **Linux**, **Windows**.  
+- 🔹 **C-like syntax** — makes assembly code more readable.  
+
+## 🛠️ Demonstration  
+💡 **Want to see the library in action?**  
+📌 Check out the 👉 [**Test Program**](https://github.com/Rigbir/Assembly_Library/blob/main/TestLib.asm), which demonstrates most of the library's functions. 
+
+## 📄 Documentation  
+
+📚 **Explore the full documentation for detailed descriptions of all available macros.**  
+🌐 [**Online Documentation**](https://rigbir.github.io/Assembly_Library/) (powered by MkDocs)
+🔹 [**English Version**](https://github.com/Rigbir/Assembly_Library/blob/main/docs/README_EN.md)  
+🔹 [**Russian Version**](https://github.com/Rigbir/Assembly_Library/blob/main/docs/README_RU.md)  
 
 ## 🔧 A minimal overview of the features
 
@@ -39,3 +52,15 @@ Just send the link: [Test_Programm](https://github.com/Rigbir/Assembly_Library/b
   
    dosbox examples.com
    ```
+
+## 💬 Get Involved & Feedback  
+
+💡 Have suggestions, found an issue, or want to improve the library?  
+Feel free to contribute, ask questions, or start discussions!  
+
+📌 **Ways to connect:**  
+🔹 Open an [Issue](https://github.com/Rigbir/Assembly_Library/issues) to report a bug or suggest an improvement.  
+🔹 Start a discussion in the [Discussions](https://github.com/Rigbir/Assembly_Library/discussions) section.  
+🔹 Feel free to fork and submit a **Pull Request** with your contributions!  
+
+Your feedback and contributions help make this library better! 🚀  
