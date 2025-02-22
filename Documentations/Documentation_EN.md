@@ -1,5 +1,10 @@
 # Library Capabilities Overview
 
+## Functions for work with Numbers
+
+<details>
+<summary>Open the list</summary>
+
 ## `read_int`
 
 ### Description
@@ -60,6 +65,34 @@ section .data
 section .text
    int_to_str buffer, number
 ```
+
+## `int_to_bin`
+
+### Description
+Converts an integer (up to 5 digits) into a binary string. The result is stored in string format in the specified buffer. Each bit of the number is represented by the character '0' or '1'. The string is terminated by the null character `$`.
+
+### Arguments
+| Parameter | Description |
+|-----------|-------------|
+| **%1**    | Address of the integer to be converted to binary format. |
+| **%2**    | Address of the buffer where the result (binary string) will be written. |
+
+### Example usage
+```assembly
+section .data
+   number dw 12345        ; Example number for conversion
+   bin_result db 17, 0    ; Buffer to store the binary string (16 bits + 1 for null character $)
+
+section .text
+   int_to_bin number, bin_result
+```
+
+</details>
+
+## Functions for work with Strings
+
+<details>
+<summary>Open the list</summary>
 
 ## `print`
 
@@ -271,23 +304,4 @@ section .text
    substr result, str, 7, 12
 ```
 
-## `int_to_bin`
-
-### Description
-Converts an integer (up to 5 digits) into a binary string. The result is stored in string format in the specified buffer. Each bit of the number is represented by the character '0' or '1'. The string is terminated by the null character `$`.
-
-### Arguments
-| Parameter | Description |
-|-----------|-------------|
-| **%1**    | Address of the integer to be converted to binary format. |
-| **%2**    | Address of the buffer where the result (binary string) will be written. |
-
-### Example usage
-```assembly
-section .data
-   number dw 12345        ; Example number for conversion
-   bin_result db 17, 0    ; Buffer to store the binary string (16 bits + 1 for null character $)
-
-section .text
-   int_to_bin number, bin_result
-```
+</details>
