@@ -2,6 +2,9 @@
 
 **Assembly Library for x86** — It is a macro library for the i8086 assembler, designed for user-friendly operation. It simplifies the development of assembly language programs by providing ready-made solutions for basic operations. 
 
+The library runs on **NASM** assembler, which is cross-platform (supports Mac OS, Linux, Windows). Writing programs using it becomes similar to C programs. You can verify this by looking at the test program, which demonstrates most of the functions of this library. <br>
+Just send the link: [Test_Programm](https://github.com/Rigbir/Assembly_Library/blob/main/TestLib.asm)
+
 ## 🔧 A minimal overview of the features
 
 - 📌 Input and Output of strings (`print`, `println`, `print_multi`, `print_inline`)
