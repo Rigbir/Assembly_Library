@@ -1,5 +1,7 @@
 # 🏛️ Assembly Library for x86 (i8086)
 
+⚖️  This project is licensed under the [Apache License 2.0](LICENSE).
+
 **Assembly Library for x86** — It is a macro library for the i8086 assembler, designed for user-friendly operation. It simplifies the development of assembly language programs by providing ready-made solutions for basic operations. 
 
 ## 🚀 Features  
