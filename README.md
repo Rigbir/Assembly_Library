@@ -7,16 +7,20 @@
 - 🔹 **Runs on NASM** — compatible with **Mac OS**, **Linux**, **Windows**.  
 - 🔹 **C-like syntax** — makes assembly code more readable.  
 
+
 ## 🛠️ Demonstration  
 💡 **Want to see the library in action?**  
 📌 Check out the 👉 [**Test Program**](https://github.com/Rigbir/Assembly_Library/blob/main/TestLib.asm), which demonstrates most of the library's functions. 
+
 
 ## 📄 Documentation  
 
 📚 **Explore the full documentation for detailed descriptions of all available macros.**  
 🌐 [**Online Documentation**](https://rigbir.github.io/Assembly_Library/) (powered by MkDocs)
+
 🔹 [**English Version**](https://github.com/Rigbir/Assembly_Library/blob/main/docs/README_EN.md)  
 🔹 [**Russian Version**](https://github.com/Rigbir/Assembly_Library/blob/main/docs/README_RU.md)  
+
 
 ## 🔧 A minimal overview of the features
 
@@ -24,6 +28,7 @@
 - 📌 Operations with strings (`strlen`, `strcopy`, `strcmp`, `substr`, `concat`)
 - 📌 Various conversions (`int_to_str`, `str_to_int`, `int_to_bin`)
 - 📌 And other features
+
 
 ## 🚀 Installation and use
 
