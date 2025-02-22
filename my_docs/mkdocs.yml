@@ -1,0 +1,45 @@
+site_name: MarLib 
+site_url: https://localhost:8000
+nav:
+  - Home: index.md
+  - Documentation:
+      - Functions for Numbers: numbers.md
+      - Functions for Strings: strings.md
+theme:
+  name: material
+  features:
+    - navigation.path
+    - navigation.section
+    - navigation.tracking
+    - navigation.footer
+    - toc.follow
+    - toc.integrate
+  toc:
+    min_level: 2
+    max_level: 2
+  icon:
+    logo: fontawesome/solid/wrench
+  palette:
+    - scheme: slate
+      toggle: 
+        icon: material/weather-sunny
+        name: Dark mode
+      primary: deep purple
+      accent: green 
+    
+    - scheme: default
+      toggle: 
+        icon: material/weather-night
+        name: Light mode
+      primary: deep purple
+      accent: green
+
+markdown_extensions:
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - codehilite
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.superfences
