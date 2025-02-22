@@ -65,7 +65,6 @@ Feel free to contribute, ask questions, or start discussions!
 
 📌 **Ways to connect:**  
 🔹 Open an [Issue](https://github.com/Rigbir/Assembly_Library/issues) to report a bug or suggest an improvement.  
-🔹 Start a discussion in the [Discussions](https://github.com/Rigbir/Assembly_Library/discussions) section.  
 🔹 Feel free to fork and submit a **Pull Request** with your contributions!  
 
 Your feedback and contributions help make this library better! 🚀  
