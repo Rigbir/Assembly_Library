@@ -1,15 +1,15 @@
-# 🏗️ Assembly Library for x86 (i8086)
+# 🏛️ Assembly Library for x86 (i8086)
 
 **Assembly Library for x86** — It is a macro library for the i8086 assembler, designed for user-friendly operation. It simplifies the development of assembly language programs by providing ready-made solutions for basic operations. 
 
-## ✨ Features  
+## 🚀 Features  
 - 🔹 **Easy to use** — minimizes routine in assembly programming.  
 - 🔹 **Runs on NASM** — compatible with **Mac OS**, **Linux**, **Windows**.  
 - 🔹 **C-like syntax** — makes assembly code more readable.  
 
 
-## 🛠️ Demonstration  
-💡 **Want to see the library in action?**  
+## 🔧 Demonstration  
+💭 **Want to see the library in action?**  
 📌 Check out the 👉 [**Test Program**](https://github.com/Rigbir/Assembly_Library/blob/main/TestLib.asm), which demonstrates most of the library's functions. 
 
 
@@ -29,7 +29,7 @@
 - 📌 Various conversions (`int_to_str`, `str_to_int`, `int_to_bin`)
 - 📌 And other features
 
-
+ 
 ## 🚀 Installation and use
 
 1. **Clone this repository**:
@@ -60,7 +60,7 @@
 
 ## 💬 Get Involved & Feedback  
 
-💡 Have suggestions, found an issue, or want to improve the library?  
+Have suggestions, found an issue, or want to improve the library?  
 Feel free to contribute, ask questions, or start discussions!  
 
 📌 **Ways to connect:**  
