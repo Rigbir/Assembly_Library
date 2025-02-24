@@ -17,6 +17,26 @@
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
 ;
+;              The Macro block used for help operations
+;
+;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
+%macro multipush 1-*          ; Macros for push more one arguments
+   %rep %0                    ; Repeat for the number of arguments passed
+      push %1                 ; Push the current argument onto the stack
+      %rotate 1               ; Rotate arguments to move the next one into position
+   %endrep                    ; End the repetition loop
+%endmacro
+;------------------------------------------------------------------------------
+%macro multipop 1-*           ; Define the macro multipop that accepts one or more arguments
+   %rep %0                    ; Repeat for the number of arguments passed
+      %rotate -1              ; Rotate arguments in the opposite direction to prepare for popping
+      pop %1                  ; Pop the current value from the stack into the current argument
+   %endrep                    ; End the repetition loop
+%endmacro
+;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
+;
 ;   The Macro block used for numbers and operations with them
 ;
 ;------------------------------------------------------------------------------
@@ -24,8 +44,7 @@
 %macro read_int 1             ; Macros for input integer value
    
    ; Save registers to preserve their original values
-   push ax
-   push bx
+   multipush ax, bx
 
    xor bx, bx                 ; Clear BX (used to store the input number)
 
@@ -57,15 +76,13 @@
       mov [%1], bx            ; Store the final result in the priveded memory location
 
    ; Restore original registers values
-   pop bx
-   pop ax
+   multipop ax, bx
 %endmacro
 ;------------------------------------------------------------------------------
 %macro str_to_int 2           ; Macros for convert string to integer value
    
    ; Save registers to preserve their original values
-   push ax
-   push bx
+   multipush ax, bx
   
    xor bx, bx                 ; Clear BX (used to store the number)
    mov si, %1                 ; Load the address of the input string into SI
@@ -95,18 +112,13 @@
                               ; given memory location
    
    ; Restore original registers values
-   pop bx
-   pop ax
+   multipop ax, bx
 %endmacro
-;-------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
 %macro int_to_str 2           ; Macros to convert an integer to an ASCII string
    
    ; Save registers to preserve their original values
-   push ax
-   push bx
-   push dx
-   push cx
-   push di
+   multipush ax, bx, dx, cx, di
 
    xor cx, cx                 ; Clear CX (digit counter)
 
@@ -151,20 +163,19 @@
       jnz %%to_string         ; If AX is not zero, repeat
 
    ; Restore original registers values
-   pop di
-   pop cx
-   pop dx
-   pop bx
-   pop ax
+   multipop ax, bx, dx, cx, di
 %endmacro
+;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
+;
+;             The Macro block used for number system translations
+;
+;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
 %macro int_to_bin 2           ; Macros for convert 2-byte integer to binary number
    
    ; Save registers to preserve their original values
-   push ax
-   push cx
-   push dx
-   push di
+   multipush ax, cx, dx, di
 
    mov dx, %1                 ; Load the 16-bit integer into DX
    lea di, %2                 ; Load the address of the output buffer into DI
@@ -182,10 +193,65 @@
    mov byte [di], '$'         ; Null-terminate the string
 
    ; Restore original registers values
-   pop di
-   pop dx
-   pop cx
-   pop ax
+   multipop ax, cx, dx, di
+%endmacro
+;------------------------------------------------------------------------------
+%macro int_to_hex 2           ; Macros for convert unsigned number to hexadecimal
+
+   ; Save registers to preserve their original values
+   multipush ax, dx, cx, di
+
+   mov ax, %1                 ; Load unsigned number into AX
+   mov di, %2                 ; Load the address of the output buffer into DI
+   mov cx, 4                  ; Set loop counter to 4 (processing 4 hex digits)
+
+   %%lp:
+      rol ax, 4               ; Rotate left by 4 bits to extract the next hex digit
+      mov dx, ax              ; Copy the result to DX
+      and dx, 0xF             ; Mask out only the lowest 4 bits (hex digit)
+      
+      cmp dx, 9               ; Check if the digit is in the range 0-9
+      jle %%less              ; If yes, jump to %%less to convert it to ASCII
+      add dx, 'A' - 10        ; Convert 10-15 to ASCII ('A'-'F')
+      jmp %%store             ; Jump to %%store to save the character
+   %%less:
+      add dx, '0'             ; Convert 0-9 to ASCII ('0'-'9')
+   %%store:
+      mov byte [di], dl       ; Store the character in the output buffer
+      inc di                  ; Move to the next buffer position
+      loop %%lp               ; Repeat for all 4 hex digits
+
+   mov byte [di], '$'         ; Null-terminate the string
+
+   ; Restore original registers values
+   multipop ax, dx, cx, di
+%endmacro
+;------------------------------------------------------------------------------
+%macro int_to_octal 2
+
+   ; Save registers to preserve their original values
+   multipush ax, dx, cx, di
+
+   mov ax, %1                 ; Load unsigned number into AX
+   mov di, %2                 ; Load the address of the output buffer into DI
+   mov cx, 6                  ; Set loop counter to 6 (processing 6 octal digits)
+   
+   add di, cx                 ; Move DI to the end of the buffer
+   mov byte [di], '$'         ; Null-terminate the string
+   dec di                     ; Move back one position for the first digit
+         
+   %%lp:
+      mov dx, ax              ; Copy AX to DX
+      and dx, 0x7             ; Get the least sigificant 3 bits (octal digit)
+      add dx, '0'             ; Convert to ASCII
+      mov byte [di], dl       ; Store the digit in the buffer
+      dec di                  ; Move buffer pointer left
+
+      shr ax, 3               ; Shift AX right by 3 (divide by 8)
+      loop %%lp               ; Repeat for all digits
+
+   ; Restore original registers values
+   multipop ax, dx, cx, di
 %endmacro
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
@@ -197,8 +263,7 @@
 %macro newline 0              ; Macros for moving the cursor to a new line
    
    ; Save registers to preserve their original values
-   push ax
-   push dx
+   multipush ax, dx
 
    mov ah, 02h                ; DOS function to print character
    mov dl, 0Dh                ; DL = Carriage Return
@@ -207,24 +272,20 @@
    int 21h                    ; DOS interrupt
 
    ; Restore original registers values
-   pop dx
-   pop ax
+   multipop ax, dx
 %endmacro
 ;------------------------------------------------------------------------------
 %macro print 1                ; Macros for print output string on screen
    
    ; Save registers to preserve their original values
-   push ax
-   push dx
+   multipush ax, dx
 
    mov dx, %1                 ; Mov message to DX
    mov ah, 9h                 ; DOS function to display string
    int 21h                    ; DOS interrupt to pring the string
 
-
    ; Restore original registers values
-   pop dx
-   pop ax
+   multipop ax, dx
 %endmacro
 ;------------------------------------------------------------------------------
 %macro println 1              ; Macros for print string in newline
@@ -253,9 +314,7 @@
 %macro print_char 1           ; Macros for print char
    
    ; Save registers to preserve their original values
-   push ax
-   push dx
-   push bx
+   multipush ax, dx, bx
 
    mov bl, %1                 ; Save DL value, if passing arguments is register
 
@@ -270,17 +329,14 @@
    int 21h                    ; DOS interrupt
 
    ; Restore original registers values
-   pop bx
-   pop dx
-   pop ax
+   multipop ax, dx, bx
 %endmacro
 ;------------------------------------------------------------------------------
 %macro concat 2-*             ; Macros for concatenate 2+ strings
    
    ; Save registers to preserve their original values
-   push di
-   push si
-
+   multipush di, si
+                  
    mov di, %1                 ; Set DI to the beginning of the result buffer
    %assign i 0                ; Local variable to create unique loop labels
 
@@ -301,16 +357,13 @@
    mov byte [di], '$'         ; Mark the end of the concatenated string with '$'
                                                  
    ; Restore original registers values
-   pop si
-   pop di
+   multipop di, si
 %endmacro
 ;------------------------------------------------------------------------------
 %macro strlen 2               ; Macros for count string length
    
    ; Save registers to preserve their original values
-   push ax
-   push cx
-   push si
+   multipush ax, cx, si
 
    xor cx, cx                 ; CX = 0
    mov si, %2                 ; Set SI point to start string
@@ -326,17 +379,13 @@
       int_to_str %1, %1       ; Call function for transform integer value to string
      
    ; Restore original registers values
-   pop si
-   pop cx
-   pop ax
+   multipop ax, cx, si
 %endmacro
 ;------------------------------------------------------------------------------
 %macro strcopy 2              ; Macros for copying the second string to the first
    
    ; Save registers to preserve their original values
-   push ax
-   push si
-   push di
+   multipush ax, si, di
 
    mov di, %1                 ; Set DI pointer to the beginning first string
    mov si, %2                 ; Set SI pointer to the beginning second string
@@ -351,17 +400,13 @@
       mov byte [di], '$'      ; Set end-charater-string
 
    ; Restore original registers values
-   pop di
-   pop si
-   pop ax
+   multipop ax, si, di
 %endmacro
 ;------------------------------------------------------------------------------
 %macro strcmp 3               ; Macros for comparing two string and get compare-result
    
    ; Save registers to preserve their original values
-   push ax
-   push di
-   push si
+   multipush ax, si, di
 
    mov di, %2                 ; Set DI pointer to the beginning first string
    mov si, %3                 ; Set SI pointer to the beginning second string
@@ -393,19 +438,13 @@
 
    %%end:
       ; Restore original registers values
-      pop si
-      pop di
-      pop ax
+   multipop ax, si, di
 %endmacro
 ;-------------------------------------------------------------------------------
 %macro substr 4               ; Macros to extract a substring using two number
    
    ; Save registers to preserve their original values
-   push ax
-   push bx
-   push cx
-   push di
-   push si
+   multipush ax, bx, cx, di, si
 
    mov di, %1                 ; Set DI to the destination buffer (ouput substring)
    mov si, %2                 ; Set SI to the beginning of the string
@@ -458,11 +497,7 @@
       jmp %%end               ; Jump to the end
 
    %%end:
-      ; Restore original registers values
-      pop si
-      pop di
-      pop cx
-      pop bx
-      pop ax
+   ; Restore original registers values
+   multipop ax, bx, cx, di, si
 %endmacro
 ;------------------------------------------------------------------------------
