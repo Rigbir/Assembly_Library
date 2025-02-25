@@ -123,14 +123,14 @@
    xor cx, cx                 ; Clear CX (digit counter)
 
    ; Load the integer value from the given register or memory location into AX
-   %ifidn %2, ax
+   %ifidn %1, ax
       mov ax, ax              ; If the input is AX, keep it as is
-   %elifidn %2, bx
+   %elifidn %1, bx
       mov ax, bx              ; If the input is BX, move BX to AX
-   %elifidn %2, dx
+   %elifidn %1, dx
       mov ax, dx              ; If the input is DX, move DX to AX
    %else
-      mov ax, [%2]            ; Otherwise, load the integer value from memory
+      mov ax, [%1]            ; Otherwise, load the integer value from memory
    %endif
 
    mov bx, ax                 ; Save the original number in BX
@@ -144,7 +144,7 @@
       jnz %%count_digit       ; If not, repeat the loop
 
    ; Compute the position in the buffer where the ASCII string should be stored
-   mov ax, %1                 ; Move buffer address into AX
+   mov ax, %2                 ; Move buffer address into AX
    add ax, cx                 ; Add the digit count to buffer address
    mov di, ax                 ; Store the final pointer in DI
    mov byte [di], '$'         ; Append end-of-string marker
@@ -196,6 +196,33 @@
    multipop ax, cx, dx, di
 %endmacro
 ;------------------------------------------------------------------------------
+%macro bin_to_int 2           ; Macros to convert binary number to integer
+
+   ; Save registers to preserve their original values
+   multipush ax, bx, dx, cx, di
+
+   mov dx, %1                 ; Load the input binary number into DX
+   mov cx, 16                 ; Set CX to 16 (for 16 bits of input binary)
+   mov si, 1                  ; Set SI to 1 (initial place value)
+
+   %%conversion:
+      test dx, 1              ; Test the least significant bit of DX
+      jz %%skip               ; If the bit is 0, skip adding to AX
+
+      add ax, si              ; Add the current place value (SI) to AX if the bit is 1
+   %%skip:
+      shr dx, 1               ; Shift the bits in DX right by 1 (moving to next bit)
+      shl si, 1               ; Shift the place value (SI) left by 1 (doubling the value)
+      dec cx                  ; Decrease the bit counter (CX)
+      jnz %%conversion        ; If CX is not zero, repeat the conversion process
+
+   int_to_str ax, %2          ; Convert the final result in AX to a string (calls the int_to_str macro)
+
+
+   ; Restore original registers values
+   multipop ax, bx, dx, cx, di
+%endmacro
+;------------------------------------------------------------------------------
 %macro int_to_hex 2           ; Macros for convert unsigned number to hexadecimal
 
    ; Save registers to preserve their original values
@@ -227,7 +254,11 @@
    multipop ax, dx, cx, di
 %endmacro
 ;------------------------------------------------------------------------------
-%macro int_to_octal 2
+%macro hex_to_int 2
+
+%endmacro
+;------------------------------------------------------------------------------
+%macro int_to_oct 2
 
    ; Save registers to preserve their original values
    multipush ax, dx, cx, di
@@ -252,6 +283,10 @@
 
    ; Restore original registers values
    multipop ax, dx, cx, di
+%endmacro
+;------------------------------------------------------------------------------
+%macro octal_to_int 2
+
 %endmacro
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
