@@ -199,7 +199,7 @@
 %macro bin_to_int 2           ; Macros to convert binary number to integer
 
    ; Save registers to preserve their original values
-   multipush ax, bx, dx, cx, di
+   multipush ax, bx, dx, cx, si
 
    mov dx, %1                 ; Load the input binary number into DX
    mov cx, 16                 ; Set CX to 16 (for 16 bits of input binary)
@@ -219,7 +219,7 @@
    int_to_str ax, %2          ; Convert the final result in AX to a string (calls the int_to_str macro)
 
    ; Restore original registers values
-   multipop ax, bx, dx, cx, di
+   multipop ax, bx, dx, cx, si
 %endmacro
 ;------------------------------------------------------------------------------
 %macro int_to_hex 2           ; Macros for convert unsigned number to hexadecimal
@@ -254,7 +254,7 @@
 %endmacro
 ;------------------------------------------------------------------------------
 %macro hex_to_int 2
-
+   multipush ax, bx, cx, dx
 %endmacro
 ;------------------------------------------------------------------------------
 %macro int_to_oct 2
@@ -287,15 +287,11 @@
 %macro oct_to_int 2
 
    ; Save registers to preserve their original values
-   multipush ax, bx, cx, dx, di
+   multipush ax, bx, cx, dx, si
 
    mov ax, %1                 ; Load the unsigned octal number into AX
    mov cx, 6                  ; Set the loop counter to 6 (processing up to 6 octal digits)
    xor bx, bx                 ; Clear BX (used for storing the final integer result)
-
-   add di, cx                 ; Move DI forward by 6 positions
-   mov byte [di], '$'         ; Set the end-of-string marker for the output
-   dec di                     ; Move DI one step back
 
    mov si, 1                  ; SI will be used as the positional multiplier (1, 8, 64, ...)
 
@@ -314,7 +310,7 @@
    int_to_str bx, %2          ; Convert the final integer result to a string and store in %2
 
    ; Restore original register values
-   multipop ax, bx, cx, dx, di
+   multipop ax, bx, cx, dx, si
 %endmacro
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
