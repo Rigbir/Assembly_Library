@@ -222,41 +222,6 @@
    multipop ax, bx, dx, cx, si
 %endmacro
 ;------------------------------------------------------------------------------
-%macro int_to_hex 2           ; Macros for convert unsigned number to hexadecimal
-
-   ; Save registers to preserve their original values
-   multipush ax, dx, cx, di
-
-   mov ax, %1                 ; Load unsigned number into AX
-   mov di, %2                 ; Load the address of the output buffer into DI
-   mov cx, 4                  ; Set loop counter to 4 (processing 4 hex digits)
-
-   %%conversion:
-      rol ax, 4               ; Rotate left by 4 bits to extract the next hex digit
-      mov dx, ax              ; Copy the result to DX
-      and dx, 0xF             ; Mask out only the lowest 4 bits (hex digit)
-      
-      cmp dx, 9               ; Check if the digit is in the range 0-9
-      jle %%less              ; If yes, jump to %%less to convert it to ASCII
-      add dx, 'A' - 10        ; Convert 10-15 to ASCII ('A'-'F')
-      jmp %%store             ; Jump to %%store to save the character
-   %%less:
-      add dx, '0'             ; Convert 0-9 to ASCII ('0'-'9')
-   %%store:
-      mov byte [di], dl       ; Store the character in the output buffer
-      inc di                  ; Move to the next buffer position
-      loop %%conversion       ; Repeat for all 4 hex digits
-
-   mov byte [di], '$'         ; Null-terminate the string
-
-   ; Restore original registers values
-   multipop ax, dx, cx, di
-%endmacro
-;------------------------------------------------------------------------------
-%macro hex_to_int 2
-   multipush ax, bx, cx, dx
-%endmacro
-;------------------------------------------------------------------------------
 %macro int_to_oct 2
 
    ; Save registers to preserve their original values
@@ -310,6 +275,65 @@
    int_to_str bx, %2          ; Convert the final integer result to a string and store in %2
 
    ; Restore original register values
+   multipop ax, bx, cx, dx, si
+%endmacro
+;------------------------------------------------------------------------------
+%macro int_to_hex 2           ; Macros for convert unsigned number to hexadecimal
+
+   ; Save registers to preserve their original values
+   multipush ax, dx, cx, di
+
+   mov ax, %1                 ; Load unsigned number into AX
+   mov di, %2                 ; Load the address of the output buffer into DI
+   mov cx, 4                  ; Set loop counter to 4 (processing 4 hex digits)
+
+   %%conversion:
+      rol ax, 4               ; Rotate left by 4 bits to extract the next hex digit
+      mov dx, ax              ; Copy the result to DX
+      and dx, 0xF             ; Mask out only the lowest 4 bits (hex digit)
+      
+      cmp dx, 9               ; Check if the digit is in the range 0-9
+      jle %%less              ; If yes, jump to %%less to convert it to ASCII
+      add dx, 'A' - 10        ; Convert 10-15 to ASCII ('A'-'F')
+      jmp %%store             ; Jump to %%store to save the character
+   %%less:
+      add dx, '0'             ; Convert 0-9 to ASCII ('0'-'9')
+   %%store:
+      mov byte [di], dl       ; Store the character in the output buffer
+      inc di                  ; Move to the next buffer position
+      loop %%conversion       ; Repeat for all 4 hex digits
+
+   mov byte [di], '$'         ; Null-terminate the string
+
+   ; Restore original registers values
+   multipop ax, dx, cx, di
+%endmacro
+;------------------------------------------------------------------------------
+%macro hex_to_int 2           ; Macro to convert a hexadecimal number to a decimal
+
+   ; Save registers to preserve their original values
+   multipush ax, bx, cx, dx, si
+
+   mov ax, %1                 ; Load the input hexadecimal number into AX
+   mov cx, 4                  ; Set loop counter to 4 (processing 4 hex digits)
+   xor bx, bx                 ; Clear BX (this will store the decimal result)
+
+   mov si, 1                  ; Set the initial multiplier to 1 (16^0)
+
+   %%conversion:
+      mov dx, ax              ; Copy AX to DX
+      and dx, 0xF             ; Extract the lowest 4-bit hex digit
+
+      imul dx, si             ; Multiply the extracted digit by the current multiplier (16^position)
+      shl si, 4               ; Increase the multiplier by shifting left (multiply by 16)
+      add bx, dx              ; Accumulate the decimal result
+      ror ax, 4               ; Rotate AX right by 4 bits to process the next hex digit
+      dec cx                  ; Decrease the loop counter
+      jnz %%conversion        ; Repeat until all 4 hex digits are processed
+
+   int_to_str bx, %2          ; Convert the final decimal result stored in BX to a string and store it in %2
+
+   ; Restore original registers values
    multipop ax, bx, cx, dx, si
 %endmacro
 ;------------------------------------------------------------------------------
