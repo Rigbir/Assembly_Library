@@ -218,7 +218,6 @@
 
    int_to_str ax, %2          ; Convert the final result in AX to a string (calls the int_to_str macro)
 
-
    ; Restore original registers values
    multipop ax, bx, dx, cx, di
 %endmacro
@@ -232,7 +231,7 @@
    mov di, %2                 ; Load the address of the output buffer into DI
    mov cx, 4                  ; Set loop counter to 4 (processing 4 hex digits)
 
-   %%lp:
+   %%conversion:
       rol ax, 4               ; Rotate left by 4 bits to extract the next hex digit
       mov dx, ax              ; Copy the result to DX
       and dx, 0xF             ; Mask out only the lowest 4 bits (hex digit)
@@ -246,7 +245,7 @@
    %%store:
       mov byte [di], dl       ; Store the character in the output buffer
       inc di                  ; Move to the next buffer position
-      loop %%lp               ; Repeat for all 4 hex digits
+      loop %%conversion       ; Repeat for all 4 hex digits
 
    mov byte [di], '$'         ; Null-terminate the string
 
@@ -271,7 +270,7 @@
    mov byte [di], '$'         ; Null-terminate the string
    dec di                     ; Move back one position for the first digit
          
-   %%lp:
+   %%conversion:
       mov dx, ax              ; Copy AX to DX
       and dx, 0x7             ; Get the least sigificant 3 bits (octal digit)
       add dx, '0'             ; Convert to ASCII
@@ -279,14 +278,43 @@
       dec di                  ; Move buffer pointer left
 
       shr ax, 3               ; Shift AX right by 3 (divide by 8)
-      loop %%lp               ; Repeat for all digits
+      loop %%conversion       ; Repeat for all digits
 
    ; Restore original registers values
    multipop ax, dx, cx, di
 %endmacro
 ;------------------------------------------------------------------------------
-%macro octal_to_int 2
+%macro oct_to_int 2
 
+   ; Save registers to preserve their original values
+   multipush ax, bx, cx, dx, di
+
+   mov ax, %1                 ; Load the unsigned octal number into AX
+   mov cx, 6                  ; Set the loop counter to 6 (processing up to 6 octal digits)
+   xor bx, bx                 ; Clear BX (used for storing the final integer result)
+
+   add di, cx                 ; Move DI forward by 6 positions
+   mov byte [di], '$'         ; Set the end-of-string marker for the output
+   dec di                     ; Move DI one step back
+
+   mov si, 1                  ; SI will be used as the positional multiplier (1, 8, 64, ...)
+
+   %%conversion:
+      mov dx, ax              ; Copy AX to DX
+      and dx, 0x7             ; Extract the lowest octal digit (AX & 7)
+
+      imul dx, si             ; Multiply the digit by the current position multiplier
+      shl si, 3               ; Multiply SI by 8 (shift left by 3 bits)
+      add bx, dx              ; Accumulate the result in BX
+
+      shr ax, 3               ; Shift AX right by 3 bits to process the next octal digit
+      dec cx                  ; Decrease the loop counter
+      jnz %%conversion        ; Repeat until all 6 digits are processed
+
+   int_to_str bx, %2          ; Convert the final integer result to a string and store in %2
+
+   ; Restore original register values
+   multipop ax, bx, cx, dx, di
 %endmacro
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
